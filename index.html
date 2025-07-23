@@ -233,8 +233,9 @@
             // --- AUTHENTICATION FLOW ---
             const redirectToWebflowAuth = () => {
                 const scopes = 'sites:read assets:write';
-                const authUrl = `https://webflow.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${scopes}`;
-                window.location.href = authUrl;
+                const authUrl = `https://webflow.com/oauth/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${scopes}&redirect_uri=${REDIRECT_URI}`;
+                // FIX: Open the authorization URL in a new tab to escape the iframe.
+                window.open(authUrl, '_blank');
             };
 
             const exchangeCodeForToken = async (code) => {
